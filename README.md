@@ -4,12 +4,14 @@ Linter for JSON Schema instances.
 
 ## Installation
 
-This project is not currently packaged and so must be installed manually.
+Install with `pip`:
 
-Clone the project with the following command:
 ```
-git clone https://github.com/jacksmith15/jsonschema-lint.git
+pip install jsonschema-lint[yaml]
 ```
+
+> :information_source: Leave out the `[yaml]` suffix if you don't need YAML support.
+
 
 ## Usage
 
