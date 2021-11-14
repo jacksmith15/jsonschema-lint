@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from jsonschema_lint.utils import path_pattern, path_match
+from jsonschema_lint.utils import path_match, path_pattern
 
 
 @pytest.mark.parametrize(
@@ -40,12 +40,14 @@ from jsonschema_lint.utils import path_pattern, path_match
         ("/dir/**/*.json", "/dir/file.json", True),
         ("/dir/**/*.json", "dir/subdir/file.json", False),
         ("/dir/**/*.json", "/dir/subdir/file.json", True),
-    ]
+    ],
 )
 def test_path_match(pattern: str, path, expected: bool):
     path = Path(path)
     compiled_pattern = path_pattern(pattern)
-    assert path_match(path, pattern) is expected, f"""Failed:
+    assert (
+        path_match(path, pattern) is expected
+    ), f"""Failed:
 Expected: {expected}
 Pattern: {pattern}
 Path: {path}

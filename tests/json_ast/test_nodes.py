@@ -6,7 +6,6 @@ import pytest
 from jsonschema_lint.json_ast import nodes
 from jsonschema_lint.json_ast.location import Location, Position
 
-
 _LOC = Location(start=Position(line=1, column=1, index=0), end=Position(line=1, column=2, index=1))
 
 TREE = nodes.Object(
@@ -72,8 +71,8 @@ def test_dict():
         ("string", nodes.String),
         (1, nodes.Integer),
         (1.0, nodes.Number),
-        ({}, TypeError)
-    ]
+        ({}, TypeError),
+    ],
 )
 def test_literal_detect(value, expected: Union[Type[nodes.Node], Type[Exception]]):
     if isinstance(expected, type) and issubclass(expected, Exception):

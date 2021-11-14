@@ -3,10 +3,10 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Generic, List, Optional, TypeVar
 
-from jsonschema_lint.json_ast.nodes import Array, Literal, Object, Node, Property, String
-from jsonschema_lint.json_ast.tokenizer import Token, TokenType, tokenize
 from jsonschema_lint.json_ast.errors import JSONASTError
 from jsonschema_lint.json_ast.location import Location, Position
+from jsonschema_lint.json_ast.nodes import Array, Literal, Node, Object, Property, String
+from jsonschema_lint.json_ast.tokenizer import Token, TokenType, tokenize
 
 
 class ObjectState(Enum):

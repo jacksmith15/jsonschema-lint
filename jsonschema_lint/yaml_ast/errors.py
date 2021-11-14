@@ -1,6 +1,5 @@
 from typing import Union
 
-
 from jsonschema_lint.json_ast.location import Location, Position
 
 

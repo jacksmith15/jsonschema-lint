@@ -38,7 +38,7 @@ def test_lint_ast_error():
     assert errors == [
         Error(
             location=Location(start=Position(line=1, column=1, index=0), end=Position(line=1, column=14, index=13)),
-            message="Unclosed object at line 1, column 1"
+            message="Unclosed object at line 1, column 1",
         )
     ]
 

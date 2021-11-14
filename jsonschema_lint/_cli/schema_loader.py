@@ -21,6 +21,7 @@ def load_schema(url: str) -> dict:
     if not compat.YAML_ENABLED:
         return json.loads(content)
     import yaml
+
     if "json" in content_type:
         return json.loads(content)
     if "yaml" in content_type:

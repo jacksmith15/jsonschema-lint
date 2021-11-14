@@ -1,8 +1,8 @@
 import json
-from pathlib import Path
-from typing import List, Literal, Optional
 from dataclasses import dataclass, field
 from functools import cached_property, lru_cache
+from pathlib import Path
+from typing import List, Literal, Optional
 from urllib.parse import urlparse
 from urllib.request import urlopen
 
@@ -96,7 +96,6 @@ class Rule:
         return None
 
 
-
 @lru_cache(maxsize=1)
 def get_schema_store_rules():
     catalog = schema_store_catalog()
@@ -109,7 +108,6 @@ def get_schema_store_rules():
         for rule in catalog["schemas"]
         for glob in (rule.get("fileMatch") or [])
     ]
-
 
 
 @lru_cache(maxsize=1)

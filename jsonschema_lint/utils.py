@@ -8,6 +8,7 @@ def path_match(path: Path, glob: str) -> bool:
         return True
     return False
 
+
 def path_pattern(glob: str, sep: str = "/") -> re.Pattern:
     absolute = glob.startswith(sep)
     if absolute:
@@ -20,31 +21,42 @@ def path_pattern(glob: str, sep: str = "/") -> re.Pattern:
 
     # Iteratively replace wildcards surrounded by directory separators,
     # so that we can make those separators optional when next to a wildcard.
-    result = re.escape(glob).replace(
-        f"{sep}\\*\\*{sep}",
-        rf"({sep}(.+?{sep})?)?",
-    ).replace(
-        f"\\*\\*{sep}",
-        rf"({sep}?(.*?){sep})?",
-    ).replace(
-        f"{sep}\\*\\*",
-        rf"({sep}(.*?){sep}?)?",
-    ).replace(
-        "\\*\\*",
-        rf"({sep}?(.*?){sep}?)?",
-    ).replace(
-        f"{sep}\\*{sep}",
-        rf"{sep}?[^{sep}]+?{sep}?",
-    ).replace(
-        f"{sep}\\*",
-        rf"{sep}?[^{sep}]+?",
-    ).replace(
-        f"\\*{sep}",
-        rf"[^{sep}]+?{sep}?",
-    ).replace(
-        "\\*",
-        rf"[^{sep}]+?",
-    ) + "$"
+    result = (
+        re.escape(glob)
+        .replace(
+            f"{sep}\\*\\*{sep}",
+            rf"({sep}(.+?{sep})?)?",
+        )
+        .replace(
+            f"\\*\\*{sep}",
+            rf"({sep}?(.*?){sep})?",
+        )
+        .replace(
+            f"{sep}\\*\\*",
+            rf"({sep}(.*?){sep}?)?",
+        )
+        .replace(
+            "\\*\\*",
+            rf"({sep}?(.*?){sep}?)?",
+        )
+        .replace(
+            f"{sep}\\*{sep}",
+            rf"{sep}?[^{sep}]+?{sep}?",
+        )
+        .replace(
+            f"{sep}\\*",
+            rf"{sep}?[^{sep}]+?",
+        )
+        .replace(
+            f"\\*{sep}",
+            rf"[^{sep}]+?{sep}?",
+        )
+        .replace(
+            "\\*",
+            rf"[^{sep}]+?",
+        )
+        + "$"
+    )
     # woof!
 
     if absolute:

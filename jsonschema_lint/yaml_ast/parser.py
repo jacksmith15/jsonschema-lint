@@ -41,7 +41,7 @@ def _convert_pyyaml_node(document: str, node: yaml.nodes.Node) -> nodes.Node:
     if not node:
         raise YAMLASTError(message="Input is empty", document=document, location=Position(line=1, column=1, index=0))
     if isinstance(node, yaml.nodes.ScalarNode):
-        raw = document[node.start_mark.index:node.end_mark.index]
+        raw = document[node.start_mark.index : node.end_mark.index]
         value = yaml.safe_load(raw)
         return nodes.Literal.detect(value)(
             location=utils.location_from_marks(start=node.start_mark, end=node.end_mark),

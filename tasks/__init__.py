@@ -12,7 +12,8 @@ namespace = Collection(
     changelog_check,
     coverage,
     lint,
-    release,test,
+    release,
+    test,
     typecheck,
     verify,
 )

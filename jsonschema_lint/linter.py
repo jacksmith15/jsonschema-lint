@@ -6,17 +6,22 @@ from jsonschema import ValidationError
 from jsonschema.validators import validator_for
 
 from jsonschema_lint.compat import YAML_ENABLED
-from jsonschema_lint.json_ast import nodes, parse as json_parse
+from jsonschema_lint.json_ast import nodes
+from jsonschema_lint.json_ast import parse as json_parse
 from jsonschema_lint.json_ast.errors import JSONASTError
 from jsonschema_lint.json_ast.location import Location
 
 if YAML_ENABLED:
-    from jsonschema_lint.yaml_ast import YAMLASTError, parse_all as yaml_parse
     from yaml import safe_load as load_yaml
+
+    from jsonschema_lint.yaml_ast import YAMLASTError
+    from jsonschema_lint.yaml_ast import parse_all as yaml_parse
 else:
     YAMLASTError = JSONASTError  # type: ignore[assignment, misc]
+
     def yaml_parse(document: str) -> List[nodes.Node]:
         raise RuntimeError("PyYAML is not installed")
+
     def load_yaml(*args, **kwargs):  # type: ignore[misc]
         raise RuntimeError("PyYAML is not installed")
 
@@ -35,17 +40,16 @@ def lint(schema: dict, document: str, mode: Literal["json", "yaml"] = None) -> L
     return sum([_get_schema_errors(schema, document, ast, mode) for ast in asts], [])
 
 
-def _parse_document(document: str, mode: Literal["json", "yaml"] = None) -> Tuple[Literal["json", "yaml"], List[nodes.Node]]:
+def _parse_document(
+    document: str, mode: Literal["json", "yaml"] = None
+) -> Tuple[Literal["json", "yaml"], List[nodes.Node]]:
     """Parse a YAML or JSON document to an AST.
 
     If mode is specified, use that format.
     Otherwise, try JSON first and fallback to YAML. If neither works, raise the error from
     JSON.
     """
-    parsers = {
-        "json": lambda doc: [json_parse(doc)],
-        "yaml": yaml_parse
-    }
+    parsers = {"json": lambda doc: [json_parse(doc)], "yaml": yaml_parse}
     if mode:
         return mode, parsers[mode](document)
     try:
@@ -79,5 +83,5 @@ def _convert_error(ast: nodes.Node, exception: ValidationError) -> Error:
 
 def _truncate(string: str, max_length: int) -> str:
     if len(string) > max_length:
-        string = string[:max_length-3] + "..."
+        string = string[: max_length - 3] + "..."
     return string

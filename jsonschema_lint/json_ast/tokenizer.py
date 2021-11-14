@@ -2,7 +2,7 @@ import json
 import re
 from dataclasses import dataclass
 from enum import Enum
-from typing import List, Iterator, NoReturn
+from typing import Iterator, List, NoReturn
 
 from jsonschema_lint.json_ast.errors import JSONASTError
 from jsonschema_lint.json_ast.location import Location, Position
@@ -59,7 +59,6 @@ def tokenize_iter(document: str) -> Iterator[Token]:
         TT.NULL: re.escape("null"),
         TT.NEWLINE: r"(\r\n|\r|\n)",
         TT.WHITESPACE: r"[ \t]+",
-
         TT.INVALID_STRING: r'("(\\.|[^"\\\0-\x1F\x7F]+)*")',
         TT.UNCLOSED_STRING: r'("(\\.|[^"\\\0-\x1F\x7F]+)*)',
         TT.MISMATCH: r".",

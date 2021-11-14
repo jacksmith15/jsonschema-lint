@@ -1,6 +1,6 @@
+import changelog
 import toml
 
-import changelog
 import jsonschema_lint as package
 
 

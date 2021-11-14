@@ -6,9 +6,9 @@ from typing import Dict, Literal, Optional, Tuple
 
 import click
 
-from jsonschema_lint.linter import Error, lint
 from jsonschema_lint._cli.resolver import resolve_targets
 from jsonschema_lint._cli.rule_loader import Rule
+from jsonschema_lint.linter import Error, lint
 
 
 @click.command("jsonschema-lint")
@@ -18,7 +18,7 @@ from jsonschema_lint._cli.rule_loader import Rule
     "schema_path",
     type=click.Path(exists=True, file_okay=True, dir_okay=False, path_type=Path),
     default=None,
-    help="Ignore .jsonschemarc files and use this schema for all specified files."
+    help="Ignore .jsonschemarc files and use this schema for all specified files.",
 )
 @click.option(
     "--schema-store/--no-schema-store",
