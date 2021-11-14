@@ -21,7 +21,7 @@ $ jsonschema-lint
 
 ### Selecting instances
 
-By default, the linter will attempt to lint every file matching extension under the currect directory. This means every `.json` file, plus every `.yaml`/`.yml` file if [pyyaml] is installed. A file will only be linted if a matching schema can be detected (see [below](#-selecting-schemas)).
+By default, the linter will attempt to lint every file matching extension under the currect directory. This means every `.json` file, plus every `.yaml`/`.yml` file if [PyYAML] is installed. A file will only be linted if a matching schema can be detected (see [below](#-selecting-schemas)).
 
 You can override this behaviour by passing arguments to the linter, e.g.
 
@@ -74,3 +74,6 @@ poetry run inv verify
 # License
 
 This project is distributed under the MIT license.
+
+
+[PyYAML]: https://pypi.org/project/PyYAML/
