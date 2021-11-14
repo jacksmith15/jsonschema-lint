@@ -1,6 +1,6 @@
 # jsonschema-lint
 
-Linter to for instances of JSON Schemas.
+Linter for JSON Schema instances.
 
 ## Installation
 
