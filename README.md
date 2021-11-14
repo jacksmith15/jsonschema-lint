@@ -29,13 +29,13 @@ You can override this behaviour by passing arguments to the linter, e.g.
 $ jsonschema-lint **/*.avsc
 ```
 
-### Selecting schemas
+### Schema resolution
 
 There are three ways schemas can be selected for a given instance. In order of priority:
 
 1. If provided, the `--schema` option will be used to validate all target instances.
 1. A matching rule in a `.jsonschema-lint` file, in the instance directory or its parents (see below).
-1. A matching rule from [Schema Store](https://www.schemastore.org/json/) (only if the `--schema-store` flag is provided)
+1. If the `--schema-store` flag is provided, then matching rules from [Schema Store](https://www.schemastore.org/json/) will be used.
 
 
 #### `.jsonschema-lint` files
