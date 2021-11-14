@@ -1,0 +1,5 @@
+# A comment on its own line
+numbers/instances/**/*.json numbers/schema.json
+numbers/instances/**/*.yaml numbers/schema.json
+object/instances/**/*.json object/schema.json  # An end-of-line comment
+object/instances/**/*.yml object/schema.json

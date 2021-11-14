@@ -1,0 +1,5 @@
+{
+    "type": "array",
+    "items": {"type": "number", "enum": [1, 2, 3]},
+    "minItems": 3
+}
